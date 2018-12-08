@@ -1,0 +1,13 @@
+﻿  pch.cpp
+c:\users\陈名振\source\repos\学生成绩管理系统\学生成绩管理系统\pch.cpp(34): warning C4101: “fp”: 未引用的局部变量
+c:\users\陈名振\source\repos\学生成绩管理系统\学生成绩管理系统\pch.cpp(122): warning C4101: “i”: 未引用的局部变量
+c:\users\陈名振\source\repos\学生成绩管理系统\学生成绩管理系统\pch.cpp(468): warning C4101: “fp”: 未引用的局部变量
+c:\users\陈名振\source\repos\学生成绩管理系统\学生成绩管理系统\pch.cpp(811): warning C4101: “temp”: 未引用的局部变量
+c:\users\陈名振\source\repos\学生成绩管理系统\学生成绩管理系统\pch.cpp(102): warning C4715: “ScanfStuInError”: 不是所有的控件路径都返回值
+  SequenceList.cpp
+  main.cpp
+c:\users\陈名振\source\repos\学生成绩管理系统\学生成绩管理系统\main.cpp(6): warning C4326: “main”的返回类型应为“int”而非“void”
+c:\users\陈名振\source\repos\学生成绩管理系统\学生成绩管理系统\main.cpp(7): warning C4101: “k”: 未引用的局部变量
+c:\users\陈名振\source\repos\学生成绩管理系统\学生成绩管理系统\main.cpp(7): warning C4101: “i”: 未引用的局部变量
+  正在生成代码...
+  学生成绩管理系统.vcxproj -> C:\Users\陈名振\source\repos\学生成绩管理系统\Debug\学生成绩管理系统.exe

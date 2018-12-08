@@ -215,7 +215,7 @@ void Display(STUDENT students[], int count_stu)
 }
 void Search(STUDENT students_display[])
 {
-	int i = 0; char c[N]; char select; int flag = 0, count = 0;
+	int i = 0; char c[N],c_[N]; char select; int flag = 0, count = 0;
 	int xiabiao[N];
 	system("cls");
 	printf(FIRSTMENU1);
@@ -228,7 +228,7 @@ void Search(STUDENT students_display[])
 	printf("               请输入你的选择:");
 	while (1)
 	{
-		scanf("%s", c);
+		scanf(" %s", c);
 		if (c[1] == '\0')
 		{
 			select = c[0];
@@ -243,7 +243,7 @@ void Search(STUDENT students_display[])
 						printf(FIRSTMENU9);
 						printf("               查询不到该信息\n");
 						printf(FIRSTMENU9);
-						printf("               请输入你的选择:");
+						system("pause");
 					}
 					else
 					{
@@ -257,11 +257,23 @@ void Search(STUDENT students_display[])
 					break;//continue;
 				case '2':
 					//按姓名查询
+					printf(FIRSTMENU9);
+					printf("                         1 精确查找   其他 模糊查找\n");
+					printf(FIRSTMENU9);
+					printf("               ");
+					getchar();//fflush(stdin);
+					scanf(" %s", c_);
+					if(c_[1]=='\0'&&c_[0]=='1')
 					Search_(students_display, xiabiao, count, '2');
+					else
+					Search_(students_display, xiabiao, count, '5');
 					if (count == 0)
 					{
 						printf(FIRSTMENU9);
-						printf("               查询不到该信息;");
+						printf("               查询不到该信息;\n");
+						printf(FIRSTMENU9);
+						system("pause");
+						
 					}
 					else
 					{
@@ -278,7 +290,9 @@ void Search(STUDENT students_display[])
 					if (count == 0)
 					{
 						printf(FIRSTMENU9);
-						printf("               查询不到该信息;");
+						printf("               查询不到该信息;\n");
+						printf(FIRSTMENU9);
+						system("pause");
 					}
 					else
 					{
@@ -296,7 +310,9 @@ void Search(STUDENT students_display[])
 					if (count == 0)
 					{
 						printf(FIRSTMENU9);
-						printf("               查询不到该信息;");
+						printf("               查询不到该信息;\n");
+						printf(FIRSTMENU9);
+						system("pause");
 					}
 					else
 					{
@@ -319,14 +335,20 @@ void Search(STUDENT students_display[])
 			{
 				printf(FIRSTMENU9);
 				printf("               你的输入不符合要求，请按要求输入\n");
+				printf(FIRSTMENU9);
 				printf("               ");
+				//("pause");
+				continue;
 			}
 		}
 		else
 		{
 			printf(FIRSTMENU9);
 			printf("               你的输入不符合要求，请按要求输入\n");
+			printf(FIRSTMENU9);
 			printf("               ");
+			//system("pause");
+			continue;
 		}
 		break;
 	}
@@ -334,7 +356,7 @@ void Search(STUDENT students_display[])
 //p是用来记录找到了多少个人
 int* Search_(STUDENT students_display[], int xiabiao[], int &p,char ch)
 {
-	FILE *fp; char find[N];
+	FILE *fp; char find[N] ;
 	printf(FIRSTMENU9);
 	if (ch == '1')
 		printf("               请输入你要查询的学号:");
@@ -344,8 +366,12 @@ int* Search_(STUDENT students_display[], int xiabiao[], int &p,char ch)
 		printf("               请输入你要查询的班级:");
 	if (ch == '4')
 		printf("               请输入你要查询的辅导员:");
-	scanf("%s", find);
+	if (ch == '5')
+		printf("               请输入你要模糊查找的姓名:");
+	getchar();
+	scanf(" %s", find);
 	int i, j = 0; p = 0;//j作为数组的下标  p用来计数
+	int f = 0,n=0;//用于模糊查找
 	if ((fp = fopen("D:\\demo.txt", "r")) == NULL)
 	{
 		printf("查询失败\n");
@@ -376,6 +402,7 @@ int* Search_(STUDENT students_display[], int xiabiao[], int &p,char ch)
 				j++; p++;
 			}
 		}
+		
 	}
 	else if (ch == '3')
 	{
@@ -386,6 +413,24 @@ int* Search_(STUDENT students_display[], int xiabiao[], int &p,char ch)
 				xiabiao[j] = i;
 				j++; p++;
 				//xiabiao[p++] = i;
+			}
+		}
+	}
+	else if (ch == '5')
+	{
+		//模糊查找
+		for (i = 0; i < count_file; i++)
+		{
+			for (n = 0; students_display[i].Name[n] != '\0'; n += 2)
+			{
+				for (f = 0; find[f] != '\0'; f += 2)//因为中文占两个字符，所以要f+=2
+				{
+					if (students_display[i].Name[n] == find[f])
+					{
+						xiabiao[j] = i;
+						j++; p++;
+					}
+				}
 			}
 		}
 	}
